@@ -1,23 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hans">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>香蕉皮的网站</title>
 	<style>
 		body {
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		header {
 			background-color: orange;
+			color: #fff;
 			display: flex;
-			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			height: 100vh;
+			padding: 20px;
+		}
+		main {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 40px;
+			text-align: center;
+		}
+		h1 {
+			font-size: 3em;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+		h2 {
+			font-size: 2em;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			margin-bottom: 10px;
+		}
+		a {
+			color: #ff6600;
+			text-decoration: none;
+			transition: all 0.3s ease-in-out;
+		}
+		a:hover {
+			color: #333;
+			text-shadow: 1px 1px #ccc;
 		}
 	</style>
 </head>
 <body>
-	<h1>香蕉皮网站</h1>
-	<h3>软件</h3>
-	<ul>
-		<li><a href="software/xsl.html">香蕉皮开服器</a></li>
-	</ul>
+	<header>
+		<h1>香蕉皮网站</h1>
+	</header>
+	<main>
+		<h2>软件列表</h2>
+		<ul>
+			<li><a href="software/xsl.html">香蕉皮开服器</a></li>
+		</ul>
+	</main>
 </body>
 </html>
