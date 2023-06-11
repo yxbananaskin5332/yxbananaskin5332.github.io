@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>虚拟世界地形生成器</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js"></script>
+</head>
+<body>
+<h1>虚拟世界地形生成器</h1>
+<p>请在下面填写相关参数：</p>
+<form>
+<label for="width">地形宽度：</label>
+<input type="number" id="width" name="width"><br><br>
+<label for="height">地形高度：</label>
+<input type="number" id="height" name="height"><br><br>
+<label for="seed">种子数值：</label>
+<input type="number" id="seed" name="seed"><br><br>
+<input type="submit" value="生成地形">
+</form>
+<div id="canvas"></div>
+
+<script>
+	var canvas = document.querySelector('#canvas');
+	var ctx = canvas.getContext('2d');
+	
+	function generateTerrain(width, height, seed) {
+		var imageData = ctx.createImageData(width, height);
+		var data = imageData.data;
+		
+		for (var x = 0; x < width; x++) {
+			for (var y = 0; y < height; y++) {
+				var index = (x + y * width) * 4;
+				
+				// 根据种子数值计算高度值
+				var noise = simplex(x / seed, y / seed);
+				var height = Math.floor(noise * 255);
+				
+				// 颜色值：红、绿、蓝
+				data[index] = height;
+				data[index + 1] = height;
+				data[index + 2] = height;
+				data[index + 3] = 255;
+			}
+		}
+		
+		return imageData;
+	}
+	
+	function drawTerrain(imageData) {
+		canvas.width = imageData.width;
+		canvas.height = imageData.height;
+		ctx.putImageData(imageData, 0, 0);
+	}
+	
+	var form = document.querySelector('form');
+	form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		
+		var width = parseInt(document.querySelector('#width').value);
+		var height = parseInt(document.querySelector('#height').value);
+		var seed = parseInt(document.querySelector('#seed').value);
+		
+		var terrain = generateTerrain(width, height, seed);
+		drawTerrain(terrain);
+	});
+</script>
+</body>
+</html>
+
