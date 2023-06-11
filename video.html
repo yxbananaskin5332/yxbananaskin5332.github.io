@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>B站视频下载器</title>
+</head>
+<body>
+	<h1>B站视频下载器</h1>
+
+	<label for="video-url">请输入B站视频链接：</label>
+	<input type="text" id="video-url" name="video-url">
+
+	<button onclick="downloadVideo()">下载视频</button>
+
+	<div id="progress"></div>
+
+	<div id="download-status"></div>
+
+	<script>
+		function downloadVideo() {
+			var videoUrl = document.getElementById("video-url").value;
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "https://api.bilibili.com/x/web-interface/view?bvid=" + getBvidFromUrl(videoUrl), true);
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr.onreadystatechange = function() {
+				if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+					var responseJson = JSON.parse(this.responseText);
+					var title = responseJson.data.title;
+					var videoUrl = responseJson.data.pages[0].durl[0].url;
+					startDownload(title, videoUrl);
+				}
+			};
+			xhr.send();
+		}
+
+		function startDownload(title, videoUrl) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", videoUrl, true);
+			xhr.responseType = "blob";
+			xhr.onload = function(event) {
+				if (this.status === 200) {
+					saveVideo(title, this.response);
+				}
+			};
+			xhr.addEventListener("progress", function(event) {
+				if (event.lengthComputable) {
+					var percentComplete = event.loaded / event.total;
+					document.getElementById("progress").innerHTML = "下载进度：" + Math.round(percentComplete * 100) + "%";
+				}
+			});
+			xhr.send();
+		}
+
+		function saveVideo(title, videoBlob) {
+			var a = document.createElement("a");
+			a.href = URL.createObjectURL(videoBlob);
+			a.download = title + ".mp4";
+			document.body.appendChild(a);
+			a.click();
+			document.getElementById("download-status").innerHTML = "视频下载完成！";
+		}
+
+		function getBvidFromUrl(url) {
+			return url.split("/")[4];
+		}
+	</script>
+</body>
+</html>
