@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>无上限随机数生成器</title>
+  </head>
+  <body>
+    <h1>无上限随机数生成器</h1>
+    <p>生成一个 0 到 999999999999 的随机整数：</p>
+    <button onclick="generateRandomNumber()">生成</button>
+    <p id="randomNumber"></p>
+
+    <script>
+      function generateRandomNumber() {
+        var randomNumber = Math.floor(Math.random() * 1000000000000);
+        document.getElementById("randomNumber").innerHTML = randomNumber;
+      }
+    </script>
+  </body>
