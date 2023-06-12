@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>香蕉皮的网站</title>
+  <style>
+    /* 添加进入动画 */
+    body {
+      transform: translateX(-100%);
+      animation-name: slideIn;
+      animation-duration: 1s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* 设置背景颜色 */
+    body {
+      background-color: #000;
+    }
+
+    /* 其他样式和代码 */
+  
+    /* 加入文字阴影和边框样式 */
+    .container h1, h3, p {
+      text-shadow: 2px 2px #f00;
+      border: 1px solid #fff;
+      padding: 10px;
+    }
+    
+    /* 修改链接样式 */
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: color .5s ease-in-out;
+    }
+    
+    /* 鼠标悬停链接变色 */
+    a:hover {
+      color: #f00;
+    }
+
+    /* 添加文字特效 */
+    .animate {
+      animation-name: heartBeat;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes heartBeat {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>香蕉皮网站</h1>
+    <h3>可用功能</h3>
+    <ul>
+      <li><a href="software.html">我的软件下载</a></li>
+      <li><a href="jiaocheng.html">Minecraft教程</a></li>
+    </ul>
+    <h3>个人账号</h3>
+    <ul>
+      <li><a href="qq.html">qq</a></li>
+      <li><a href="https://space.bilibili.com/1770618999?spm_id_from=333.1007.0.0">b站账号</a></li>
+    </ul>
+  
+    <h2 class="animate">欢迎来到香蕉皮的网站！</h2>
+  </div>
+  
+  <!-- 引入Animate.css动画库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <script>
+    // 使用JavaScript控制背景颜色的渐变效果
+    var body = document.querySelector('body');
+    setInterval(function() {
+      body.classList.toggle('animate__fadeOut');
+    }, 5000);
+  </script>
+</body>
+</html>
