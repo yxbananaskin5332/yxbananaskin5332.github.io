@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>香蕉皮的网站</title>
+  <style>
+    /* 其他样式和代码 */
+    
+    /* 加入动画样式 */
+    .moving-text {
+      animation-name: slideLeftRight;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes slideLeftRight {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>香蕉皮网站</h1>
+    <h3>可用功能</h3>
+    <ul>
+      <li><a href="software.html">我的软件下载</a></li>
+      <li><a href="jiaocheng.html">Minecraft教程</a></li>
+    </ul>
+    <h3>个人账号</h3>
+    <ul>
+      <li><a href="qq.html">qq</a></li>
+      <li><a href="https://space.bilibili.com/1770618999?spm_id_from=333.1007.0.0">b站账号</a></li>
+    </ul>
+  
+    <!-- 加入移动的文本 -->
+    <p class="moving-text">欢迎来到香蕉皮的网站！</p>
+  </div>
+</body>
+</html> 
